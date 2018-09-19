@@ -12,7 +12,7 @@ public class HelloBean implements Hello {
 
     public String hello() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return say + " at " + sdf.format(new Date());
+        return say + " at " + sdf.format(new Date()) + "{\"age\":100, \"name\":\"John\"}";
     }
 
     public String getSay() {
