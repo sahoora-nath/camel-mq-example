@@ -16,8 +16,15 @@
         <route id="mqToLog">
         	<from uri="activemq:queue:myActiveMq"/>
         	<log id="_log2" message="message received from MQ: ${body}"/>
+        	<setBody id="_processResponse">
+                <method method="processToDB(${body})" ref="messageProcessingBean"/>
+            </setBody>
+            <log id="_log3" message="${body}"/>
         </route>
     </camelContext>
+    <bean id="messageProcessingBean" class="com.sahoora.apache.camel.mq.MessageProcessingBean">
+    </bean>
+    
     <bean class="org.apache.activemq.ActiveMQConnectionFactory" id="jmsConnectionFactory">
         <property name="brokerURL" value="vm://localhost:61616"/>
         <property name="userName" value="admin"/>
